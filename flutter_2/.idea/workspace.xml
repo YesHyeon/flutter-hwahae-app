@@ -13,7 +13,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4bf944b-18f7-4c5d-9300-bf5135255909" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

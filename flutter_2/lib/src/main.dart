@@ -107,148 +107,148 @@ class _MainPageState extends State<MainPage> {
       ],
       "에센스": [
         {
-          "image": "assets/images/skin1.jpg",
-          "name": "아쿠아 오아시스 토너",
-          "comment": "자극적인 성분이 없어서 좋아요",
-          "star": "4.6",
+          "image": "assets/images/essense1.jpg",
+          "name": "에스네이처 아쿠아 스쿠알란 세럼",
+          "comment": "자극업고 끈적하지 않아요",
+          "star": "4.95",
           "review": "10"
         },
         {
-          "image": "assets/images/skin2.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
-          "comment": "토너의 역할에 충실한 제품",
-          "star": "4.43",
+          "image": "assets/images/essense2.jpg",
+          "name": "에스네이처 아쿠아 콜라겐 젤 에센스",
+          "comment": "잘발려요 너무",
+          "star": "4.86",
           "review": "10"
         },
         {
-          "image": "assets/images/skin3.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
-          "comment": "토너의 역할에 충실한 제품",
-          "star": "4.13",
+          "image": "assets/images/essense3.jpg",
+          "name": "토리든 다이브인 세럼",
+          "comment": "속건조 해결돼요",
+          "star": "4.76",
           "review": "10"
         },
         {
-          "image": "assets/images/skin4.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
-          "comment": "토너의 역할에 충실한 제품",
-          "star": "4.03",
+          "image": "assets/images/essense4.jpg",
+          "name": "다자연 어성초 케어 세럼",
+          "comment": "진정되는게 좋아요",
+          "star": "4.74",
           "review": "10"
         },
         {
-          "image": "assets/images/skin5.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
-          "comment": "토너의 역할에 충실한 제품",
-          "star": "4.00",
+          "image": "assets/images/essense5.jpg",
+          "name": "비플레인 시카테롤 앰플",
+          "comment": "흡수되는 속도가 빨라오",
+          "star": "4.54",
           "review": "10"
         }
       ],
       "수분크림": [
         {
-          "image": "assets/images/skin1.jpg",
-          "name": "아쿠아 오아시스 토너",
-          "comment": "자극적인 성분이 없어서 좋아요",
-          "star": "4.6",
+          "image": "assets/images/waterCream1.jpg",
+          "name": "토리든 다이브인 수딩크림",
+          "comment": "가볍고 산뜻하게",
+          "star": "4.94",
           "review": "10"
         },
         {
-          "image": "assets/images/skin2.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
-          "comment": "토너의 역할에 충실한 제품",
-          "star": "4.43",
+          "image": "assets/images/waterCream2.jpg",
+          "name": "에스트라 아토베리어 365 크림",
+          "comment": "속건조가 해결돼서 좋아요",
+          "star": "4.73",
           "review": "10"
         },
         {
-          "image": "assets/images/skin3.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
-          "comment": "토너의 역할에 충실한 제품",
-          "star": "4.13",
+          "image": "assets/images/waterCream3.jpg",
+          "name": "에스네이처 아쿠아 스쿠알란 수분크림",
+          "comment": "바르면 윤기가 나요 유분 많아요",
+          "star": "4.70",
           "review": "10"
         },
         {
-          "image": "assets/images/skin4.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
-          "comment": "토너의 역할에 충실한 제품",
-          "star": "4.03",
+          "image": "assets/images/waterCream4.jpg",
+          "name": "피지오겔 DMT 페이셜 크림",
+          "comment": "뒤집어지지 않아요",
+          "star": "4.53",
           "review": "10"
         },
         {
-          "image": "assets/images/skin5.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
-          "comment": "토너의 역할에 충실한 제품",
-          "star": "4.00",
+          "image": "assets/images/waterCream5.jpg",
+          "name": "메이크프렘 인테카 수딩 크림",
+          "comment": "자극이 조금 돼요",
+          "star": "4.35",
           "review": "10"
         }
       ],
       "마스크팩": [
         {
-          "image": "assets/images/skin1.jpg",
-          "name": "아쿠아 오아시스 토너",
-          "comment": "자극적인 성분이 없어서 좋아요",
-          "star": "4.6",
+          "image": "assets/images/mask1.jpg",
+          "name": "토리든 다이브인 마스크팩",
+          "comment": "자극적인 성분이 없요",
+          "star": "4.9",
           "review": "10"
         },
         {
-          "image": "assets/images/skin2.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
-          "comment": "토너의 역할에 충실한 제품",
-          "star": "4.43",
+          "image": "assets/images/mask2.jpg",
+          "name": "다자연 어성초 마스크팩",
+          "comment": "여드름 줄들어요",
+          "star": "4.83",
           "review": "10"
         },
         {
-          "image": "assets/images/skin3.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
-          "comment": "토너의 역할에 충실한 제품",
-          "star": "4.13",
+          "image": "assets/images/mask3.jpg",
+          "name": "백아울 모이스처 밸런싱 마스크",
+          "comment": "밀착되고 에센스가 많아요",
+          "star": "4.54",
           "review": "10"
         },
         {
-          "image": "assets/images/skin4.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
-          "comment": "토너의 역할에 충실한 제품",
+          "image": "assets/images/mask4.jpg",
+          "name": "비플레인 시카풀 카밍 마스크",
+          "comment": "진정되어요",
           "star": "4.03",
           "review": "10"
         },
         {
-          "image": "assets/images/skin5.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
-          "comment": "토너의 역할에 충실한 제품",
+          "image": "assets/images/mask5.jpg",
+          "name": "듀이트리 AC 컨트롤 EX 딥마스크",
+          "comment": "쿨링기능이 있어요",
           "star": "4.00",
           "review": "10"
         }
       ],
       "쉐이빙크림": [
         {
-          "image": "assets/images/skin1.jpg",
-          "name": "아쿠아 오아시스 토너",
-          "comment": "자극적인 성분이 없어서 좋아요",
-          "star": "4.6",
+          "image": "assets/images/shaving1.jpg",
+          "name": "플리프 시카알로에 쉐이빙크림",
+          "comment": "쿨링돼요",
+          "star": "4.3",
           "review": "10"
         },
         {
-          "image": "assets/images/skin2.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
-          "comment": "토너의 역할에 충실한 제품",
-          "star": "4.43",
+          "image": "assets/images/shaving2.jpg",
+          "name": "러쉬 더티 쉐이빙 크림",
+          "comment": "알갱이가 있어서 각질도 제거돼요",
+          "star": "4.23",
           "review": "10"
         },
         {
-          "image": "assets/images/skin3.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
-          "comment": "토너의 역할에 충실한 제품",
+          "image": "assets/images/shaving3.jpg",
+          "name": "불독 오리지널 쉐이브 크림",
+          "comment": "거품이 잘 안나요",
           "star": "4.13",
           "review": "10"
         },
         {
-          "image": "assets/images/skin4.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
-          "comment": "토너의 역할에 충실한 제품",
+          "image": "assets/images/shaving4.jpg",
+          "name": "더바디샵 포맨 쉐이브 크림",
+          "comment": "건조하지만 자극 없어요",
           "star": "4.03",
           "review": "10"
         },
         {
-          "image": "assets/images/skin5.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
-          "comment": "토너의 역할에 충실한 제품",
+          "image": "assets/images/shaving5.jpg",
+          "name": "록시땅 리치 쉐이브 크림",
+          "comment": "향이 좋아요",
           "star": "4.00",
           "review": "10"
         }
@@ -288,16 +288,17 @@ class _MainPageState extends State<MainPage> {
                     return Center(
                         // children: [],
                         child: Column(children: <Widget>[
-                      Text(
-                        "${user[0]['type']} 피부타입에 알맞는 ${choice} 추천 결과입니다.",
-                        style: const TextStyle(fontSize: 15),
-                      ),
+                      Container(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: Text(
+                            "${user[0]['type']} 피부타입에 알맞는 ${choice} 추천 결과입니다.",
+                            style: const TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                          )),
                       Expanded(
                           child: ListView.builder(
                               key: const PageStorageKey("LIST_VIEW"),
                               itemCount: datas[choice].length,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: () {
@@ -328,8 +329,8 @@ class _MainPageState extends State<MainPage> {
                                     );
                                   },
                                   child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 12),
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 3),
                                     width: MediaQuery.of(context).size.width,
                                     child: Center(
                                         child: Row(
@@ -339,7 +340,7 @@ class _MainPageState extends State<MainPage> {
                                               style: const TextStyle(
                                                   fontSize: 40)),
                                           padding: const EdgeInsets.only(
-                                              left: 15, top: 20, bottom: 20),
+                                              left: 20, top: 20, bottom: 20),
                                         ),
                                         ClipRRect(
                                             child: Image.asset(
@@ -353,10 +354,19 @@ class _MainPageState extends State<MainPage> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(datas[choice][index]["name"]),
-                                            Text(datas[choice][index]["star"]),
                                             Text(
-                                                datas[choice][index]["comment"])
+                                              datas[choice][index]["name"],
+                                              style: const TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(
+                                                "${datas[choice][index]["star"]}\(${datas[choice][index]['review']}\)"),
+                                            Text(
+                                                datas[choice][index]["comment"],
+                                                style: const TextStyle(
+                                                  fontSize: 12,
+                                                ))
                                           ],
                                         ))
                                       ],
