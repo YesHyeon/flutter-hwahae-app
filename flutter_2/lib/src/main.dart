@@ -14,6 +14,13 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final category = ['스킨', '로션', '에센스', '수분크림', '마스크팩', '쉐이빙크림'];
+  final skinTypeDescription = {
+    '건성':
+        '건성 피부는 메마른 피부에 수분을 충전하고 건조함을 악화시키지 않도록 스킨케어 각 단계마다 수분을 유지하거나 공급하는 제품을 사용해야 합니다!',
+    "지성":
+        "지성 피부는 번들거리는 피부로 인해 종종 트러블이 발생할 수 있어요.\n항상 수분크림과 진정 성분이 있는 보습제를 사용해야합니다!",
+    "복합성": "복합성 피부는 특히 T존이라고 불리는\n이마,코,턱에 유분이 생기지 않도록 해야하고 뺨에는 보습을 충전해야해!"
+  };
   dynamic datas;
   List<Map<String, String>> user = [];
   int _currentPageIndex;
@@ -395,22 +402,30 @@ class _MainPageState extends State<MainPage> {
                   ),
                   backgroundColor: Colors.white,
                   actions: [],
-                  // bottom: TabBar(
-                  //   tabs: category.map((String choice) {
-                  //     return Tab(text: choice);
-                  //   }).toList(),
-                  //   isScrollable: true,
-                  //   indicatorColor: Colors.transparent, // indicator 없애기
-                  //   unselectedLabelColor: Colors.black, // 선택되지 않은 tab 색
-                  //   labelColor: Colors.green,
-                  // ),
                 ),
                 body: Column(
                   children: <Widget>[
-                    Text(
-                      "${user[0]['type']} 피부타입에 알맞는 ${1} 추천 결과입니다.",
-                      style: const TextStyle(fontSize: 15),
-                    ),
+                    Container(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 10),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 10),
+                        child: Column(children: [
+                          Text(
+                            "${skinTypeDescription[user[0]['type']]}",
+                            style: const TextStyle(fontSize: 15),
+                          ),
+                          Text(
+                            "\n\"${user[0]['nickname']}\"님의 피부타입(${user[0]['type']}) 맞춤 제품들을 추천해드릴게요.",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Georgia'),
+                          )
+                        ]),
+                        decoration: BoxDecoration(
+                          color: Colors.green[300],
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                        )),
                     Expanded(
                         child: ListView.builder(
                             key: const PageStorageKey("LIST_VIEW"),
@@ -419,35 +434,58 @@ class _MainPageState extends State<MainPage> {
                             itemBuilder: (context, index) {
                               return Container(
                                 padding:
-                                    const EdgeInsets.symmetric(vertical: 12),
+                                    const EdgeInsets.symmetric(vertical: 4),
                                 width: MediaQuery.of(context).size.width,
                                 child: Center(
-                                    child: Row(
+                                    child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      child: Text(category[index],
-                                          style: const TextStyle(fontSize: 10)),
-                                      padding: const EdgeInsets.only(
-                                          left: 5, top: 20, bottom: 20),
+                                      child: Text(
+                                          "${index + 1}단계: ${category[index]}",
+                                          style: const TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold)),
+                                      padding: const EdgeInsets.only(left: 0),
                                     ),
-                                    ClipRRect(
-                                        child: Image.asset(
-                                      datas[category[index]][0]["image"]
-                                          .toString(),
-                                      height: 100,
-                                      width: 100,
-                                    )),
                                     Container(
-                                        child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(datas[category[index]][0]["name"]),
-                                        Text(datas[category[index]][0]["star"]),
-                                        Text(datas[category[index]][0]
-                                            ["comment"])
-                                      ],
-                                    ))
+                                      decoration: BoxDecoration(
+                                        border: Border(
+                                            bottom: BorderSide(
+                                                color: Colors.black)),
+                                      ),
+                                      child: Row(children: [
+                                        ClipRRect(
+                                            child: Image.asset(
+                                          datas[category[index]][0]["image"]
+                                              .toString(),
+                                          height: 100,
+                                          width: 100,
+                                        )),
+                                        Container(
+                                            child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              datas[category[index]][0]["name"],
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(datas[category[index]][0]
+                                                ["star"]),
+                                            Text(
+                                              datas[category[index]][0]
+                                                  ["comment"],
+                                              style: const TextStyle(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ],
+                                        ))
+                                      ]),
+                                    )
                                   ],
                                 )),
                               );
