@@ -13,7 +13,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final choices = ['스킨', '로션', '에센스', '수분크림', '마스크팩', '쉐이빙크림'];
+  final category = ['스킨', '로션', '에센스', '수분크림', '마스크팩', '쉐이빙크림'];
   dynamic datas;
   List<Map<String, String>> user = [];
   int _currentPageIndex;
@@ -257,7 +257,7 @@ class _MainPageState extends State<MainPage> {
     switch (_currentPageIndex) {
       case 0:
         return DefaultTabController(
-            length: choices.length,
+            length: category.length,
             child: Scaffold(
                 appBar: AppBar(
                   title: const Text(
@@ -267,7 +267,7 @@ class _MainPageState extends State<MainPage> {
                   backgroundColor: Colors.white,
                   actions: [],
                   bottom: TabBar(
-                    tabs: choices.map((String choice) {
+                    tabs: category.map((String choice) {
                       return Tab(text: choice);
                     }).toList(),
                     isScrollable: true,
@@ -277,7 +277,7 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ),
                 body: TabBarView(
-                  children: choices.map((String choice) {
+                  children: category.map((String choice) {
                     return Center(
                         // children: [],
                         child: Column(children: <Widget>[
@@ -386,7 +386,7 @@ class _MainPageState extends State<MainPage> {
         break;
       case 1:
         return DefaultTabController(
-            length: choices.length,
+            length: category.length,
             child: Scaffold(
                 appBar: AppBar(
                   title: const Text(
@@ -396,7 +396,7 @@ class _MainPageState extends State<MainPage> {
                   backgroundColor: Colors.white,
                   actions: [],
                   // bottom: TabBar(
-                  //   tabs: choices.map((String choice) {
+                  //   tabs: category.map((String choice) {
                   //     return Tab(text: choice);
                   //   }).toList(),
                   //   isScrollable: true,
@@ -405,59 +405,54 @@ class _MainPageState extends State<MainPage> {
                   //   labelColor: Colors.green,
                   // ),
                 ),
-                body: TabBarView(
-                  children: choices.map((String choice) {
-                    return Center(
-                        // children: [],
-                        child: Column(children: <Widget>[
-                      Text(
-                        "${user[0]['type']} 피부타입에 알맞는 ${choice} 추천 결과입니다.",
-                        style: const TextStyle(fontSize: 15),
-                      ),
-                      Expanded(
-                          child: ListView.builder(
-                              key: const PageStorageKey("LIST_VIEW"),
-                              itemCount: datas.length,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 12),
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Center(
-                                      child: Row(
-                                    children: [
-                                      Container(
-                                        child: Text((index + 1).toString(),
-                                            style:
-                                                const TextStyle(fontSize: 40)),
-                                        padding: const EdgeInsets.only(
-                                            left: 15, top: 20, bottom: 20),
-                                      ),
-                                      ClipRRect(
-                                          child: Image.asset(
-                                        datas[choice][index]["image"]
-                                            .toString(),
-                                        height: 100,
-                                        width: 100,
-                                      )),
-                                      Container(
-                                          child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(datas[choice][index]["name"]),
-                                          Text(datas[choice][index]["star"]),
-                                          Text(datas[choice][index]["comment"])
-                                        ],
-                                      ))
-                                    ],
-                                  )),
-                                );
-                              }))
-                    ]));
-                  }).toList(),
+                body: Column(
+                  children: <Widget>[
+                    Text(
+                      "${user[0]['type']} 피부타입에 알맞는 ${1} 추천 결과입니다.",
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                    Expanded(
+                        child: ListView.builder(
+                            key: const PageStorageKey("LIST_VIEW"),
+                            itemCount: category.length,
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            itemBuilder: (context, index) {
+                              return Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 12),
+                                width: MediaQuery.of(context).size.width,
+                                child: Center(
+                                    child: Row(
+                                  children: [
+                                    Container(
+                                      child: Text(category[index],
+                                          style: const TextStyle(fontSize: 10)),
+                                      padding: const EdgeInsets.only(
+                                          left: 5, top: 20, bottom: 20),
+                                    ),
+                                    ClipRRect(
+                                        child: Image.asset(
+                                      datas[category[index]][0]["image"]
+                                          .toString(),
+                                      height: 100,
+                                      width: 100,
+                                    )),
+                                    Container(
+                                        child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(datas[category[index]][0]["name"]),
+                                        Text(datas[category[index]][0]["star"]),
+                                        Text(datas[category[index]][0]
+                                            ["comment"])
+                                      ],
+                                    ))
+                                  ],
+                                )),
+                              );
+                            })),
+                  ],
                 ),
                 bottomNavigationBar: BottomNavigationBar(
                     onTap: (int index) {
@@ -485,7 +480,7 @@ class _MainPageState extends State<MainPage> {
         break;
       case 2:
         return DefaultTabController(
-            length: choices.length,
+            length: category.length,
             child: Scaffold(
                 appBar: AppBar(
                   title: const Text(
@@ -495,7 +490,7 @@ class _MainPageState extends State<MainPage> {
                   backgroundColor: Colors.white,
                   actions: [],
                   bottom: TabBar(
-                    tabs: choices.map((String choice) {
+                    tabs: category.map((String choice) {
                       return Tab(text: choice);
                     }).toList(),
                     isScrollable: true,
@@ -505,7 +500,7 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ),
                 body: TabBarView(
-                  children: choices.map((String choice) {
+                  children: category.map((String choice) {
                     return Center(
                         // children: [],
                         child: Column(children: <Widget>[

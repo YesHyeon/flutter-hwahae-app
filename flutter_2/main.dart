@@ -27,7 +27,7 @@ class MyHomePage_Stateless extends StatelessWidget {
     return Scaffold(
         body: ListView(children: <Widget>[
       ListTile(
-        title: Text('Mid-term Test', style: TextStyle(fontSize: 40)),
+        title: Text('화해 앱 제작중', style: TextStyle(fontSize: 40)),
         onTap: () {
           Navigator.push(
             context,
