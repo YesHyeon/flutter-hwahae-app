@@ -1,0 +1,37 @@
+[
+  {
+    "image": "assets/images/skin1.jpg",
+    "name": "아쿠아 오아시스 토너",
+    "comment": "자극적인 성분이 없어서 좋아요",
+    "star": "4.6",
+    "review": "10"
+  },
+  {
+    "image": "assets/images/skin2.jpg",
+    "name": "다이브인 저분자 히알루론산 토너",
+    "comment": "토너의 역할에 충실한 제품",
+    "star": "4.63",
+    "review": "10"
+  },
+  {
+    "image": "assets/images/skin3.jpg",
+    "name": "다이브인 저분자 히알루론산 토너",
+    "comment": "토너의 역할에 충실한 제품",
+    "star": "4.63",
+    "review": "10"
+  },
+  {
+    "image": "assets/images/skin4.jpg",
+    "name": "다이브인 저분자 히알루론산 토너",
+    "comment": "토너의 역할에 충실한 제품",
+    "star": "4.63",
+    "review": "10"
+  },
+  {
+    "image": "assets/images/skin5.jpg",
+    "name": "다이브인 저분자 히알루론산 토너",
+    "comment": "토너의 역할에 충실한 제품",
+    "star": "4.63",
+    "review": "10"
+  }
+]
