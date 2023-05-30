@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_2/src/firstpage.dart';
+import 'package:flutter_2/firebase_options.dart';
+// import 'package:flutter_2/src/firstpage.dart';
+import 'package:flutter_2/src/loginPage.dart';
+import 'package:flutter_2/src/recoPage.dart';
+import 'package:flutter_2/src/register.dart';
+import 'package:flutter_2/src/skinTypeTestPage.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_2/firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -14,9 +26,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+        primarySwatch: Colors.green,
       ),
-      home: MyHomePage_Stateless(),
+      // home: MyHomePage_Stateless(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LoginPage(),
+        '/main': (context) => MainPage(),
+        '/register': (context) => RegisterPage(),
+        '/skinTypeTest': (context) => SkinTypeTestPage(),
+      },
     );
   }
 }
