@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.flutter_2.app-mergeDebugResources-9:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.example.flutter_2.app-mergeDebugResources-14:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
                     "source": "/Users/rohhyun/flutter-hwahae-app/flutter_2/android/app/src/main/res/values-night/styles.xml",
