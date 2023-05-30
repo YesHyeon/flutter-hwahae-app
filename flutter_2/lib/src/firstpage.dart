@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:flutter_2/src/main.dart';
+import 'package:flutter_2/src/recoPage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key key, this.title});

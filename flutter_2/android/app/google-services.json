@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "25077138150",
+    "project_id": "sds-manliveyoung",
+    "storage_bucket": "sds-manliveyoung.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25077138150:android:25465ead8c8568cc35f127",
+        "android_client_info": {
+          "package_name": "com.example.flutter_2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKPe_cbixO0bCb7OiFcBymKnLm7Xvb1ZE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
