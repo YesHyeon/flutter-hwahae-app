@@ -5,6 +5,8 @@ import 'dart:math';
 import 'package:provider/provider.dart';
 import 'package:flutter_2/provider/myProvider.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage({Key key, this.title});
 
@@ -15,6 +17,35 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  FirebaseFirestore db = FirebaseFirestore.instance;
+
+  setData() async {
+    final cosmetics = db.collection("cosmetics");
+
+    final data1 = <String, String>{
+      "image": "assets/images/skin1.jpg",
+      "name": "아쿠아 오아시스 토너",
+      "comment": "자극적인 성분이 없어서 좋아요3",
+      "star": "4.6",
+      "review": "10"
+    };
+
+    cosmetics.doc("1").set(data1);
+    print('setData');
+  }
+
+  getData() async {
+    final docRef = db.collection("cosmetics").doc("1");
+
+    docRef.get().then(
+      (DocumentSnapshot doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        print(data);
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+  }
+
   final category = ['스킨', '로션', '에센스', '수분크림', '마스크팩', '쉐이빙크림'];
   final skinTypeDescription = {
     '건성':
@@ -317,13 +348,18 @@ class _MainPageState extends State<MainPage> {
                                         ),
                                         actions: <Widget>[
                                           TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                context, 'Cancel'),
+                                            onPressed: () => {
+                                              Navigator.pop(context, 'Cancel'),
+                                              getData()
+                                            },
                                             child: const Text('나중에'),
                                           ),
                                           TextButton(
-                                            onPressed: () =>
-                                                Navigator.pop(context, 'OK'),
+                                            onPressed: () => {
+                                              Navigator.pop(context, 'OK'),
+                                              print('click'),
+                                              setData()
+                                            },
                                             child: const Text('제출하기'),
                                           ),
                                         ],
