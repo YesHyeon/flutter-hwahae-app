@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:provider/provider.dart';
+import 'package:flutter_2/provider/myProvider.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key key, this.title});
@@ -291,7 +293,7 @@ class _MainPageState extends State<MainPage> {
                       Container(
                           padding: const EdgeInsets.symmetric(vertical: 20),
                           child: Text(
-                            "${user[0]['type']} 피부타입에 알맞는 ${choice} 추천 결과입니다.",
+                            "${context.watch<UserInfos>().nickname.toString()}님의 \'${context.watch<UserInfos>().type.toString()}\'피부 타입에 알맞는 ${choice} 추천 결과입니다.",
                             style: const TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.bold),
                           )),
@@ -426,7 +428,7 @@ class _MainPageState extends State<MainPage> {
                             style: const TextStyle(fontSize: 15),
                           ),
                           Text(
-                            "\n\"${user[0]['nickname']}\"님의 피부타입(${user[0]['type']}) 맞춤 제품들을 추천해드릴게요.",
+                            "\n\"${context.watch<UserInfos>().nickname.toString()}\"님의 피부타입(${context.watch<UserInfos>().type.toString()}) 맞춤 제품들을 추천해드릴게요.",
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'Georgia'),
@@ -560,15 +562,15 @@ class _MainPageState extends State<MainPage> {
                                     padding: const EdgeInsets.only(left: 0),
                                     child: Column(children: [
                                       Text(
-                                        "닉네임: ${user[0]['nickname']}",
+                                        "닉네임: ${context.watch<UserInfos>().nickname.toString()}",
                                         style: const TextStyle(fontSize: 15),
                                       ),
                                       Text(
-                                        "아이디: ${user[0]['id']}",
+                                        "아이디: ${context.watch<UserInfos>().id.toString()}",
                                         style: const TextStyle(fontSize: 15),
                                       ),
                                       Text(
-                                        "피부타입: ${user[0]['type']}",
+                                        "피부타입: ${context.watch<UserInfos>().type.toString()}",
                                         style: const TextStyle(
                                             fontFamily: 'Georgia',
                                             fontSize: 15),

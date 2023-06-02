@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_2/src/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_2/provider/myProvider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -15,9 +17,17 @@ class _LoginPageState extends State<LoginPage> {
     String username = _usernameController.text;
     String password = _passwordController.text;
     dynamic isSigned = await AuthManage().signIn(username, password);
-    isSigned
-        ? Navigator.pushReplacementNamed(context, '/main')
-        : print('로그인 실패');
+    if (context.mounted) {
+      isSigned
+          ? context.read<UserInfos>().addUserInfo(
+              {'username': username, 'nickname': 'hong', 'type': '건성'})
+          : print('로그인 실패');
+      Navigator.pushReplacementNamed(context, '/main');
+    }
+
+    // isSigned
+    //     ? Navigator.pushReplacementNamed(context, '/main')
+    //     : print('로그인 실패');
   }
 
   // _auth() {

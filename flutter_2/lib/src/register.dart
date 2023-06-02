@@ -19,20 +19,22 @@ class _RegisterPageState extends State<RegisterPage> {
     String password = _passwordController.text;
     String nickname = _nicknameController.text;
     String type = _gender;
+    dynamic savedUserInfo;
     print(username);
     print(password);
     print(nickname);
     print(type);
     dynamic isSigned = await AuthManage().createUser(username, password);
     isSigned
-        ? fireStore.collection('users').doc().set({
+        ? await fireStore.collection('users').doc().set({
             "id": username,
             "nickname": nickname,
             "password": password,
             "type": type,
           })
         : print('데이터 전달 불가능');
-    // isSigned ? Navigator.pushReplacementNamed(context, '/') : print('회원가입 실패');
+
+    Navigator.pushReplacementNamed(context, '/');
   }
 
   @override
