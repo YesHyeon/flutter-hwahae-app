@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_2/src/auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -10,12 +11,28 @@ class _RegisterPageState extends State<RegisterPage> {
   String _gender;
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  TextEditingController _nicknameController = TextEditingController();
+  FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   void _signup() async {
     String username = _usernameController.text;
     String password = _passwordController.text;
+    String nickname = _nicknameController.text;
+    String type = _gender;
+    print(username);
+    print(password);
+    print(nickname);
+    print(type);
     dynamic isSigned = await AuthManage().createUser(username, password);
-    isSigned ? Navigator.pushReplacementNamed(context, '/') : print('로그인 실패');
+    isSigned
+        ? fireStore.collection('users').doc().set({
+            "id": username,
+            "nickname": nickname,
+            "password": password,
+            "type": type,
+          })
+        : print('데이터 전달 불가능');
+    // isSigned ? Navigator.pushReplacementNamed(context, '/') : print('회원가입 실패');
   }
 
   @override
@@ -31,6 +48,7 @@ class _RegisterPageState extends State<RegisterPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextField(
+                controller: _nicknameController,
                 decoration: InputDecoration(
                   labelText: 'Nickname',
                 ),
