@@ -38,6 +38,7 @@ class _MainPageState extends State<MainPage> {
     'mask',
     'shaving'
   ];
+  final tabBarcategory = ['스킨', '로션', '에센스', '수분크림', '마스크팩', '쉐이빙크림'];
   final skinTypeDescription = {
     '건성':
         '건성 피부는 메마른 피부에 수분을 충전하고 건조함을 악화시키지 않도록 스킨케어 각 단계마다 수분을 유지하거나 공급하는 제품을 사용해야 합니다!',
@@ -421,14 +422,18 @@ class _MainPageState extends State<MainPage> {
             length: category.length,
             child: Scaffold(
                 appBar: AppBar(
+                  centerTitle: true,
                   title: const Text(
-                    "추천목록",
-                    style: TextStyle(color: Colors.black),
+                    "MAN LIVE YOUNG",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
                   ),
                   backgroundColor: Colors.white,
                   actions: [],
                   bottom: TabBar(
-                    tabs: category.map((String choice) {
+                    tabs: tabBarcategory.map((String choice) {
                       return Tab(text: choice);
                     }).toList(),
                     isScrollable: true,
@@ -591,9 +596,13 @@ class _MainPageState extends State<MainPage> {
             length: category.length,
             child: Scaffold(
                 appBar: AppBar(
+                  centerTitle: true,
                   title: const Text(
                     "루틴추천",
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
                   ),
                   backgroundColor: Colors.white,
                   actions: [],
@@ -718,9 +727,13 @@ class _MainPageState extends State<MainPage> {
             length: category.length,
             child: Scaffold(
                 appBar: AppBar(
+                  centerTitle: true,
                   title: const Text(
                     "내정보",
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
                   ),
                   backgroundColor: Colors.white,
                   actions: [],
@@ -744,23 +757,27 @@ class _MainPageState extends State<MainPage> {
                                       margin: const EdgeInsets.symmetric(
                                           vertical: 15, horizontal: 10)),
                                   Container(
-                                    padding: const EdgeInsets.only(left: 0),
-                                    child: Column(children: [
-                                      Text(
-                                        "닉네임: ${context.watch<UserInfos>().nickname.toString()}",
-                                        style: const TextStyle(fontSize: 15),
-                                      ),
-                                      Text(
-                                        "아이디: ${context.watch<UserInfos>().id.toString()}",
-                                        style: const TextStyle(fontSize: 15),
-                                      ),
-                                      Text(
-                                        "피부타입: ${context.watch<UserInfos>().type.toString()}",
-                                        style: const TextStyle(
-                                            fontFamily: 'Georgia',
-                                            fontSize: 15),
-                                      )
-                                    ]),
+                                    child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "    닉네임: ${context.watch<UserInfos>().nickname.toString()}",
+                                            style:
+                                                const TextStyle(fontSize: 15),
+                                          ),
+                                          Text(
+                                            "    아이디: ${context.watch<UserInfos>().id.toString()}",
+                                            style:
+                                                const TextStyle(fontSize: 15),
+                                          ),
+                                          Text(
+                                            "피부타입: ${context.watch<UserInfos>().type.toString()}",
+                                            style: const TextStyle(
+                                                fontFamily: 'Georgia',
+                                                fontSize: 15),
+                                          )
+                                        ]),
                                   ),
                                 ]),
                             decoration: BoxDecoration(
@@ -778,8 +795,15 @@ class _MainPageState extends State<MainPage> {
                               ],
                             )),
                         TextButton(
-                          onPressed: () => Navigator.pop(context, 'OK'),
+                          onPressed: () =>
+                              Navigator.pushNamed(context, '/skinTypeTest'),
                           child: const Text('피부타입 테스트 다시하기'),
+                        ),
+                        TextButton(
+                          onPressed: () =>
+                              Navigator.pushNamed(context, '/profileEdit'),
+                          child: const Text('프로필 수정하기',
+                              style: TextStyle(color: Colors.blue)),
                         )
                       ]),
                 ),
