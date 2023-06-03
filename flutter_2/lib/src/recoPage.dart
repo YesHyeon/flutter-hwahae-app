@@ -18,94 +18,18 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   FirebaseFirestore db = FirebaseFirestore.instance;
+  var _cosmeticDataTest = {};
 
   var _cosmeticData = {};
-
-  setData() async {
-    final cosmetics = db.collection("cosmetics");
-
-    final data1 = <String, String>{
-      "image": "assets/images/skin1.jpg",
-      "name": "아쿠아6",
-      "comment": "자극적인 성분이 없어서 좋아요3",
-      "star": "4.6",
-      "review": "10",
-      "type": "skin"
-    };
-
-    datas.forEach((k, v) => {
-          for (var i = 0; i < v.length; i++)
-            {cosmetics.doc(v[i]['name']).set(v[i])}
-        });
-
-    cosmetics.doc("2").set(data1);
-    print('setData');
-  }
-
-  getData() async {
-    final docRef = db.collection("cosmetics").doc("1");
-
-    // docRef.get().then(
-    //   (DocumentSnapshot doc) {
-    //     final data = doc.data() as Map<String, dynamic>;
-    //     print(data);
-    //   },
-    //   onError: (e) => print("Error getting document: $e"),
-    // );
-
-    // 서버에서 타입별로 제품 가져와서 객체 형식으로 저장하기.
-    print(_cosmeticData);
-    for (var i = 0; i < engcategory.length; i++) {
-      db
-          .collection("cosmetics")
-          .where("type", isEqualTo: engcategory[i])
-          .get()
-          .then(
-        (querySnapshot) {
-          print("Successfully completed");
-          dynamic item = [];
-          for (var docSnapshot in querySnapshot.docs) {
-            item.add(docSnapshot.data());
-            print('${docSnapshot.id} => ${docSnapshot.data()}');
-          }
-          setState(() {
-            _cosmeticData.addAll({'${engcategory[i]}': item});
-          });
-        },
-        onError: (e) => print("Error completing: $e"),
-      );
-    }
-    print('_cosmeticData');
-    print(_cosmeticData);
-
-    final cosmetics = db.collection("cosmetics");
-    cosmetics.orderBy("type").orderBy("star", descending: false);
-  }
-
-  setStar(name, star) async {
-    print('_cosmeticData');
-    print(_cosmeticData);
-    final cosmetics = db.collection("cosmetics");
-
-    final data1 = <String, String>{
-      "image": "assets/images/skin1.jpg",
-      "name": "아쿠아6",
-      "comment": "자극적인 성분이 없어서 좋아요3",
-      "star": "4.6",
-      "review": "10",
-      "type": "skin"
-    };
-
-    // cosmetics.where("type", isEqualTo: 'skin').set({"star": '1'});
-
-    cosmetics.doc(name).update({"star": (double.parse(star) + 0.1)}).then(
-        (value) => print("DocumentSnapshot successfully updated!"),
-        onError: (e) => print("Error updating document $e"));
-    ;
-    print('setData');
-  }
-
-  final category = ['스킨', '로션', '에센스', '수분크림', '마스크팩', '쉐이빙크림'];
+  var _setLoading = true;
+  final category = [
+    'skin',
+    'lotion',
+    'essense',
+    'waterCream',
+    'mask',
+    'shaving'
+  ];
   final engcategory = [
     'skin',
     'lotion',
@@ -125,16 +49,116 @@ class _MainPageState extends State<MainPage> {
   List<Map<String, String>> user = [];
   int _currentPageIndex;
 
+  setData() async {
+    final cosmetics = db.collection("cosmetics");
+
+    final data1 = <String, String>{
+      "image": "assets/images/skin1.jpg",
+      "name": "아쿠아6",
+      "comment": "자극적인 성분이 없어서 좋아요3",
+      "star": "4.6",
+      "review": "10",
+      "type": "skin"
+    };
+
+    datas.forEach((k, v) => {
+          for (var i = 0; i < v.length; i++)
+            {cosmetics.doc(v[i]['name']).set(v[i])}
+        });
+
+    // cosmetics.doc("2").set(data1);
+    print('setData');
+  }
+
+  getData() async {
+    _cosmeticData = {};
+    // final docRef = db.collection("cosmetics").doc("1");
+
+    // docRef.get().then(
+    //   (DocumentSnapshot doc) {
+    //     final data = doc.data() as Map<String, dynamic>;
+    //     print(data);
+    //   },
+    //   onError: (e) => print("Error getting document: $e"),
+    // );
+
+    setState(() {
+      _setLoading = true;
+    });
+
+    // 서버에서 타입별로 제품 가져와서 객체 형식으로 저장하기.
+    for (var i = 0; i < engcategory.length; i++) {
+      dynamic item = [];
+      await db
+          .collection("cosmetics")
+          .where("type", isEqualTo: engcategory[i])
+          .get()
+          .then(
+        (querySnapshot) {
+          print("Successfully completed");
+          for (var docSnapshot in querySnapshot.docs) {
+            item.add(docSnapshot.data());
+            // print('${docSnapshot.id} => ${docSnapshot.data()}');
+          }
+
+          item.sort((a, b) => double.parse(b['star'].toString())
+              .compareTo(double.parse(a['star'].toString())));
+          print(item);
+
+          setState(() {
+            _cosmeticData.addAll({'${engcategory[i]}': item});
+          });
+        },
+        onError: (e) => print("Error completing: $e"),
+      );
+    }
+
+    print('_cosmeticDataTest');
+    print(_cosmeticDataTest);
+    setState(() {
+      _setLoading = false;
+    });
+
+    final cosmetics = db.collection("cosmetics");
+    cosmetics.orderBy("type").orderBy("star", descending: false);
+  }
+
+  setStar(name, star, review) async {
+    print(name);
+    print(star);
+    setState(() {
+      _setLoading = true;
+    });
+
+    final cosmetics = db.collection("cosmetics");
+    // cosmetics.where("type", isEqualTo: 'skin').set({"star": '1'});
+
+    await cosmetics
+        .doc(name)
+        .update({"star": (double.parse(star) + 0.01).toStringAsFixed(2)}).then(
+            (value) => print("DocumentSnapshot successfully updated!"),
+            onError: (e) => print("Error updating document $e"));
+
+    await cosmetics.doc(name).update({"review": (int.parse(review) + 1)}).then(
+        (value) => print("DocumentSnapshot successfully updated!"),
+        onError: (e) => print("Error updating document $e"));
+
+    getData();
+  }
+
   @override
   void initState() {
     super.initState();
     _currentPageIndex = 0;
+
+    getData();
+    // print(_cosmeticData);
     // 제품추천에 필요한 데이터 형식
     datas = {
-      "스킨": [
+      "skin": [
         {
           "image": "assets/images/skin1.jpg",
-          "name": "아쿠아 오아시스 토너",
+          "name": "아쿠아 오아시스 포맨 토너",
           "comment": "자극적인 성분이 없어서 좋아요",
           "star": "4.6",
           "review": "10",
@@ -142,7 +166,7 @@ class _MainPageState extends State<MainPage> {
         },
         {
           "image": "assets/images/skin2.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
+          "name": "토리든 다이브인 토너",
           "comment": "토너의 역할에 충실한 제품",
           "star": "4.43",
           "review": "10",
@@ -150,7 +174,7 @@ class _MainPageState extends State<MainPage> {
         },
         {
           "image": "assets/images/skin3.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
+          "name": "이니스프리 수분맨 토너",
           "comment": "토너의 역할에 충실한 제품",
           "star": "4.13",
           "review": "10",
@@ -158,7 +182,7 @@ class _MainPageState extends State<MainPage> {
         },
         {
           "image": "assets/images/skin4.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
+          "name": "아이오페 포맨 토너",
           "comment": "토너의 역할에 충실한 제품",
           "star": "4.03",
           "review": "10",
@@ -166,14 +190,14 @@ class _MainPageState extends State<MainPage> {
         },
         {
           "image": "assets/images/skin5.jpg",
-          "name": "다이브인 저분자 히알루론산 토너",
+          "name": "꽃을든남자 히알루론산 토너",
           "comment": "토너의 역할에 충실한 제품",
           "star": "4.00",
           "review": "10",
           "type": "skin"
         }
       ],
-      "로션": [
+      "lotion": [
         {
           "image": "assets/images/lotion1.jpg",
           "name": "알리윤 세라마이드 아토 로션",
@@ -215,7 +239,7 @@ class _MainPageState extends State<MainPage> {
           "type": "lotion"
         }
       ],
-      "에센스": [
+      "essense": [
         {
           "image": "assets/images/essense1.jpg",
           "name": "에스네이처 아쿠아 스쿠알란 세럼",
@@ -257,7 +281,7 @@ class _MainPageState extends State<MainPage> {
           "type": "essense"
         }
       ],
-      "수분크림": [
+      "waterCream": [
         {
           "image": "assets/images/waterCream1.jpg",
           "name": "토리든 다이브인 수딩크림",
@@ -299,7 +323,7 @@ class _MainPageState extends State<MainPage> {
           "type": "waterCream"
         }
       ],
-      "마스크팩": [
+      "mask": [
         {
           "image": "assets/images/mask1.jpg",
           "name": "토리든 다이브인 마스크팩",
@@ -341,7 +365,7 @@ class _MainPageState extends State<MainPage> {
           "type": "mask"
         }
       ],
-      "쉐이빙크림": [
+      "shaving": [
         {
           "image": "assets/images/shaving1.jpg",
           "name": "플리프 시카알로에 쉐이빙크림",
@@ -413,107 +437,131 @@ class _MainPageState extends State<MainPage> {
                     labelColor: Colors.green,
                   ),
                 ),
-                body: TabBarView(
-                  children: category.map((String choice) {
-                    return Center(
+                body: _setLoading
+                    ? Center(
                         // children: [],
-                        child: Column(children: <Widget>[
-                      Container(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          child: Text(
-                            "${context.watch<UserInfos>().nickname.toString()}님의 \'${context.watch<UserInfos>().type.toString()}\'피부 타입에 알맞는 ${choice} 추천 결과입니다.",
-                            style: const TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                          )),
-                      Expanded(
-                          child: ListView.builder(
-                              key: const PageStorageKey("LIST_VIEW"),
-                              itemCount: datas[choice].length,
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    showDialog<String>(
-                                      context: context,
-                                      builder: (BuildContext context) =>
-                                          AlertDialog(
-                                        title: const Text('리뷰를 남겨주세요'),
-                                        content: const TextField(
-                                          decoration: InputDecoration(
-                                            border: OutlineInputBorder(),
-                                            labelText: '긍정/부정을 판단합니다.', // 힌트
-                                          ),
-                                        ),
-                                        actions: <Widget>[
-                                          TextButton(
-                                            onPressed: () => {
-                                              Navigator.pop(context, 'Cancel'),
-                                              getData()
-                                            },
-                                            child: const Text('나중에'),
-                                          ),
-                                          TextButton(
-                                            onPressed: () => {
-                                              Navigator.pop(context, 'OK'),
-                                              print('click'),
-                                              setStar(
-                                                  datas[choice][index]["name"],
-                                                  datas[choice][index]["star"])
-                                            },
-                                            child: const Text('제출하기'),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                  child: Container(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 3),
-                                    width: MediaQuery.of(context).size.width,
-                                    child: Center(
-                                        child: Row(
-                                      children: [
-                                        Container(
-                                          child: Text((index + 1).toString(),
-                                              style: const TextStyle(
-                                                  fontSize: 40)),
-                                          padding: const EdgeInsets.only(
-                                              left: 20, top: 20, bottom: 20),
-                                        ),
-                                        ClipRRect(
-                                            child: Image.asset(
-                                          datas[choice][index]["image"]
-                                              .toString(),
-                                          height: 100,
-                                          width: 100,
-                                        )),
-                                        Container(
-                                            child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              datas[choice][index]["name"],
-                                              style: const TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
+                        child: Text('별점을 분석하는 중입니다...'))
+                    : TabBarView(
+                        children: category.map((String choice) {
+                          return Center(
+                              // children: [],
+                              child: Column(children: <Widget>[
+                            Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 20),
+                                child: Text(
+                                  "${context.watch<UserInfos>().nickname.toString()}님의 \'${context.watch<UserInfos>().type.toString()}\'피부 타입에 알맞는 추천 결과입니다.",
+                                  style: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                )),
+                            Expanded(
+                                child: ListView.builder(
+                                    key: const PageStorageKey("LIST_VIEW"),
+                                    itemCount: _cosmeticData[choice].length,
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          showDialog<String>(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                AlertDialog(
+                                              title: const Text('리뷰를 남겨주세요'),
+                                              content: const TextField(
+                                                decoration: InputDecoration(
+                                                  border: OutlineInputBorder(),
+                                                  labelText:
+                                                      '긍정/부정을 판단합니다.', // 힌트
+                                                ),
+                                              ),
+                                              actions: <Widget>[
+                                                TextButton(
+                                                  onPressed: () => {
+                                                    Navigator.pop(
+                                                        context, 'Cancel'),
+                                                    getData(),
+                                                  },
+                                                  child: const Text('나중에'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () => {
+                                                    Navigator.pop(
+                                                        context, 'OK'),
+                                                    print('click'),
+                                                    setStar(
+                                                        _cosmeticData[choice]
+                                                            [index]["name"],
+                                                        _cosmeticData[choice]
+                                                                [index]["star"]
+                                                            .toString(),
+                                                        _cosmeticData[choice]
+                                                                    [index]
+                                                                ["review"]
+                                                            .toString())
+                                                  },
+                                                  child: const Text('제출하기'),
+                                                ),
+                                              ],
                                             ),
-                                            Text(
-                                                "${datas[choice][index]["star"]}\(${datas[choice][index]['review']}\)"),
-                                            Text(
-                                                datas[choice][index]["comment"],
-                                                style: const TextStyle(
-                                                  fontSize: 12,
-                                                ))
-                                          ],
-                                        ))
-                                      ],
-                                    )),
-                                  ),
-                                );
-                              }))
-                    ]));
-                  }).toList(),
-                ),
+                                          );
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 3),
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          child: Center(
+                                              child: Row(
+                                            children: [
+                                              Container(
+                                                child: Text(
+                                                    (index + 1).toString(),
+                                                    style: const TextStyle(
+                                                        fontSize: 40)),
+                                                padding: const EdgeInsets.only(
+                                                    left: 20,
+                                                    top: 20,
+                                                    bottom: 20),
+                                              ),
+                                              ClipRRect(
+                                                  child: Image.asset(
+                                                _cosmeticData[choice][index]
+                                                        ["image"]
+                                                    .toString(),
+                                                height: 100,
+                                                width: 100,
+                                              )),
+                                              Container(
+                                                  child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    _cosmeticData[choice][index]
+                                                        ["name"],
+                                                    style: const TextStyle(
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  Text(
+                                                      "${_cosmeticData[choice][index]["star"]}\(${_cosmeticData[choice][index]['review']}\)"),
+                                                  Text(
+                                                      _cosmeticData[choice]
+                                                          [index]["comment"],
+                                                      style: const TextStyle(
+                                                        fontSize: 12,
+                                                      ))
+                                                ],
+                                              ))
+                                            ],
+                                          )),
+                                        ),
+                                      );
+                                    }))
+                          ]));
+                        }).toList(),
+                      ),
                 bottomNavigationBar: BottomNavigationBar(
                     onTap: (int index) {
                       setState(() {
@@ -605,7 +653,8 @@ class _MainPageState extends State<MainPage> {
                                       child: Row(children: [
                                         ClipRRect(
                                             child: Image.asset(
-                                          datas[category[index]][0]["image"]
+                                          _cosmeticData[category[index]][0]
+                                                  ["image"]
                                               .toString(),
                                           height: 100,
                                           width: 100,
@@ -616,14 +665,15 @@ class _MainPageState extends State<MainPage> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              datas[category[index]][0]["name"],
+                                              _cosmeticData[category[index]][0]
+                                                  ["name"],
                                               style: const TextStyle(
                                                   fontWeight: FontWeight.bold),
                                             ),
-                                            Text(datas[category[index]][0]
-                                                ["star"]),
+                                            Text(_cosmeticData[category[index]]
+                                                [0]["star"]),
                                             Text(
-                                              datas[category[index]][0]
+                                              _cosmeticData[category[index]][0]
                                                   ["comment"],
                                               style: const TextStyle(
                                                   fontSize: 10,
