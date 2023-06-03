@@ -5,6 +5,7 @@ import 'package:flutter_2/src/loginPage.dart';
 import 'package:flutter_2/src/recoPage.dart';
 import 'package:flutter_2/src/register.dart';
 import 'package:flutter_2/src/skinTypeTestPage.dart';
+import 'package:flutter_2/src/profileEdit.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_2/firebase_options.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         '/main': (context) => MainPage(),
         '/register': (context) => RegisterPage(),
         '/skinTypeTest': (context) => SkinTypeTestPage(),
+        '/profileEdit': (context) => ProfileEditPage(),
       },
     );
   }
