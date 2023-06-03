@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class SkinTypeTestPage extends StatefulWidget {
@@ -24,7 +23,14 @@ class _SkinTypeTestPageState extends State<SkinTypeTestPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Skin Type Test'),
+        centerTitle: true,
+        title: const Text(
+          "피부타입 테스트",
+          style: TextStyle(
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25),
+        ),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -34,6 +40,7 @@ class _SkinTypeTestPageState extends State<SkinTypeTestPage> {
             children: <Widget>[
               for (int i = 0; i < questions.length; i++)
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       questions[i],
@@ -73,6 +80,9 @@ class _SkinTypeTestPageState extends State<SkinTypeTestPage> {
                 ),
               SizedBox(height: 24.0),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.grey, // Background color
+                ),
                 child: Text('뒤로가기'),
                 onPressed: () {
                   Navigator.pop(context);
