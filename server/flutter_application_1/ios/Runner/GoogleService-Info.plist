@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>280958944907-9isdvv8g7qj4r2gmfd8s7mliij5a9n17.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.280958944907-9isdvv8g7qj4r2gmfd8s7mliij5a9n17</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC2_HMv-P-rQ3oa_ORTz2h05j69hTDfdjc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>280958944907</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.planetar.learningflutter</string>
+	<key>PROJECT_ID</key>
+	<string>sample-86422</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sample-86422.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:280958944907:ios:6bbd222650e377edfa768e</string>
+	<key>DATABASE_URL</key>
+	<string>https://sample-86422-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
