@@ -51,6 +51,9 @@ class _MainPageState extends State<MainPage> {
   List<Map<String, String>> user = [];
   int _currentPageIndex;
 
+  get http => null;
+  var serverResponse;
+
   setData() async {
     final cosmetics = db.collection("cosmetics");
 
@@ -84,15 +87,6 @@ class _MainPageState extends State<MainPage> {
 
   getData(type) async {
     _cosmeticData = {};
-    // final docRef = db.collection("cosmetics").doc("1");
-
-    // docRef.get().then(
-    //   (DocumentSnapshot doc) {
-    //     final data = doc.data() as Map<String, dynamic>;
-    //     print(data);
-    //   },
-    //   onError: (e) => print("Error getting document: $e"),
-    // );
 
     setState(() {
       _setLoading = true;
@@ -136,8 +130,6 @@ class _MainPageState extends State<MainPage> {
   }
 
   setStar(name, star, review) async {
-    print(name);
-    print(star);
     setState(() {
       _setLoading = true;
     });
@@ -156,6 +148,16 @@ class _MainPageState extends State<MainPage> {
         onError: (e) => print("Error updating document $e"));
 
     getData(type);
+  }
+
+  void sendDataToServer(String text) async {
+    var url = Uri.parse('http://127.0.0.1:8000/upload/');
+    var response = await http.post(url, body: {'text': text});
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    setState(() {
+      serverResponse = response.body;
+    });
   }
 
   @override
