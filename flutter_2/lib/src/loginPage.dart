@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
     if (context.mounted) {
       isSigned
           ? context.read<UserInfos>().addUserInfo(
-              {'username': username, 'nickname': 'hong', 'type': '건성'})
+              {'username': username, 'nickname': '홍길동', 'type': '건성'})
           : print('로그인 실패');
       Navigator.pushReplacementNamed(context, '/main');
     }

@@ -47,31 +47,42 @@ class _MainPageState extends State<MainPage> {
     "복합성": "복합성 피부\n특히 T존이라고 불리는 이마,코,턱에 유분이 생기지 않도록 해야하고 뺨에는 보습을 충전해야 됩니다!"
   };
   dynamic datas;
+  dynamic type;
   List<Map<String, String>> user = [];
   int _currentPageIndex;
 
   setData() async {
     final cosmetics = db.collection("cosmetics");
 
+    final a = ['건성cosmetics', '지성cosmetics', '복합성cosmetics'];
+
     final data1 = <String, String>{
       "image": "assets/images/skin1.jpg",
       "name": "아쿠아6",
       "comment": "자극적인 성분이 없어서 좋아요3",
       "star": "4.6",
-      "review": "10",
+      "review": "100",
       "type": "skin"
     };
 
+    // 전체데이터 초기화
+    // a.forEach((element) {
+    //   datas.forEach((k, v) => {
+    //         for (var i = 0; i < v.length; i++)
+    //           {db.collection(element).doc(v[i]['name']).set(v[i])}
+    //       });
+    // });
+
     datas.forEach((k, v) => {
           for (var i = 0; i < v.length; i++)
-            {cosmetics.doc(v[i]['name']).set(v[i])}
+            {db.collection('건성cosmetics').doc(v[i]['name']).set(v[i])}
         });
 
     // cosmetics.doc("2").set(data1);
     print('setData');
   }
 
-  getData() async {
+  getData(type) async {
     _cosmeticData = {};
     // final docRef = db.collection("cosmetics").doc("1");
 
@@ -91,7 +102,7 @@ class _MainPageState extends State<MainPage> {
     for (var i = 0; i < engcategory.length; i++) {
       dynamic item = [];
       await db
-          .collection("cosmetics")
+          .collection("${type}cosmetics")
           .where("type", isEqualTo: engcategory[i])
           .get()
           .then(
@@ -131,7 +142,7 @@ class _MainPageState extends State<MainPage> {
       _setLoading = true;
     });
 
-    final cosmetics = db.collection("cosmetics");
+    final cosmetics = db.collection("${type}cosmetics");
     // cosmetics.where("type", isEqualTo: 'skin').set({"star": '1'});
 
     await cosmetics
@@ -144,15 +155,13 @@ class _MainPageState extends State<MainPage> {
         (value) => print("DocumentSnapshot successfully updated!"),
         onError: (e) => print("Error updating document $e"));
 
-    getData();
+    getData(type);
   }
 
   @override
   void initState() {
     super.initState();
     _currentPageIndex = 0;
-
-    getData();
     // print(_cosmeticData);
     // 제품추천에 필요한 데이터 형식
     datas = {
@@ -161,40 +170,40 @@ class _MainPageState extends State<MainPage> {
           "image": "assets/images/skin1.jpg",
           "name": "아쿠아 오아시스 포맨 토너",
           "comment": "자극적인 성분이 없어서 좋아요",
-          "star": "4.6",
-          "review": "10",
+          "star": "3.94",
+          "review": "100",
           "type": "skin"
         },
         {
           "image": "assets/images/skin2.jpg",
           "name": "토리든 다이브인 토너",
           "comment": "토너의 역할에 충실한 제품",
-          "star": "4.43",
-          "review": "10",
+          "star": "4.23",
+          "review": "100",
           "type": "skin"
         },
         {
           "image": "assets/images/skin3.jpg",
           "name": "이니스프리 수분맨 토너",
           "comment": "토너의 역할에 충실한 제품",
-          "star": "4.13",
-          "review": "10",
+          "star": "4.03",
+          "review": "100",
           "type": "skin"
         },
         {
           "image": "assets/images/skin4.jpg",
           "name": "아이오페 포맨 토너",
           "comment": "토너의 역할에 충실한 제품",
-          "star": "4.03",
-          "review": "10",
+          "star": "3.86",
+          "review": "100",
           "type": "skin"
         },
         {
           "image": "assets/images/skin5.jpg",
           "name": "꽃을든남자 히알루론산 토너",
           "comment": "토너의 역할에 충실한 제품",
-          "star": "4.00",
-          "review": "10",
+          "star": "4.28",
+          "review": "100",
           "type": "skin"
         }
       ],
@@ -203,40 +212,40 @@ class _MainPageState extends State<MainPage> {
           "image": "assets/images/lotion1.jpg",
           "name": "알리윤 세라마이드 아토 로션",
           "comment": "가렵지않아요",
-          "star": "4.92",
-          "review": "10",
+          "star": "3.92",
+          "review": "100",
           "type": "lotion"
         },
         {
           "image": "assets/images/lotion2.jpg",
           "name": "싸이닉 더 심플 데일리 로션",
           "comment": "약산성이고 가벼워요",
-          "star": "4.63",
-          "review": "10",
+          "star": "3.53",
+          "review": "100",
           "type": "lotion"
         },
         {
           "image": "assets/images/lotion3.jpg",
           "name": "아토팜 MLE 로션",
           "comment": "보습되는데 끈적임이 없어요",
-          "star": "4.57",
-          "review": "10",
+          "star": "4.14",
+          "review": "100",
           "type": "lotion"
         },
         {
           "image": "assets/images/lotion4.jpg",
           "name": "아토팜 수딩 젤 로션",
           "comment": "가렵지 않아서 좋아요",
-          "star": "4.43",
-          "review": "10",
+          "star": "4.23",
+          "review": "100",
           "type": "lotion"
         },
         {
           "image": "assets/images/lotion5.jpg",
           "name": "라운드랩 1025 독도 로션",
           "comment": "흡수가 빠르고 남자들이 쓰기 좋아요",
-          "star": "4.30",
-          "review": "10",
+          "star": "4.40",
+          "review": "100",
           "type": "lotion"
         }
       ],
@@ -245,40 +254,40 @@ class _MainPageState extends State<MainPage> {
           "image": "assets/images/essense1.jpg",
           "name": "에스네이처 아쿠아 스쿠알란 세럼",
           "comment": "자극업고 끈적하지 않아요",
-          "star": "4.95",
-          "review": "10",
+          "star": "4.55",
+          "review": "100",
           "type": "essense"
         },
         {
           "image": "assets/images/essense2.jpg",
           "name": "에스네이처 아쿠아 콜라겐 젤 에센스",
           "comment": "잘발려요 너무",
-          "star": "4.86",
-          "review": "10",
+          "star": "4.36",
+          "review": "100",
           "type": "essense"
         },
         {
           "image": "assets/images/essense3.jpg",
           "name": "토리든 다이브인 세럼",
           "comment": "속건조 해결돼요",
-          "star": "4.76",
-          "review": "10",
+          "star": "3.66",
+          "review": "100",
           "type": "essense"
         },
         {
           "image": "assets/images/essense4.jpg",
           "name": "다자연 어성초 케어 세럼",
           "comment": "진정되는게 좋아요",
-          "star": "4.74",
-          "review": "10",
+          "star": "3.94",
+          "review": "100",
           "type": "essense"
         },
         {
           "image": "assets/images/essense5.jpg",
           "name": "비플레인 시카테롤 앰플",
           "comment": "흡수되는 속도가 빨라오",
-          "star": "4.54",
-          "review": "10",
+          "star": "4.10",
+          "review": "100",
           "type": "essense"
         }
       ],
@@ -287,40 +296,40 @@ class _MainPageState extends State<MainPage> {
           "image": "assets/images/waterCream1.jpg",
           "name": "토리든 다이브인 수딩크림",
           "comment": "가볍고 산뜻하게",
-          "star": "4.94",
-          "review": "10",
+          "star": "3.94",
+          "review": "100",
           "type": "waterCream"
         },
         {
           "image": "assets/images/waterCream2.jpg",
           "name": "에스트라 아토베리어 365 크림",
           "comment": "속건조가 해결돼서 좋아요",
-          "star": "4.73",
-          "review": "10",
+          "star": "4.13",
+          "review": "100",
           "type": "waterCream"
         },
         {
           "image": "assets/images/waterCream3.jpg",
           "name": "에스네이처 아쿠아 스쿠알란 수분크림",
           "comment": "바르면 윤기가 나요 유분 많아요",
-          "star": "4.70",
-          "review": "10",
+          "star": "4.12",
+          "review": "100",
           "type": "waterCream"
         },
         {
           "image": "assets/images/waterCream4.jpg",
           "name": "피지오겔 DMT 페이셜 크림",
           "comment": "뒤집어지지 않아요",
-          "star": "4.53",
-          "review": "10",
+          "star": "4.23",
+          "review": "100",
           "type": "waterCream"
         },
         {
           "image": "assets/images/waterCream5.jpg",
           "name": "메이크프렘 인테카 수딩 크림",
           "comment": "자극이 조금 돼요",
-          "star": "4.35",
-          "review": "10",
+          "star": "3.45",
+          "review": "100",
           "type": "waterCream"
         }
       ],
@@ -328,25 +337,25 @@ class _MainPageState extends State<MainPage> {
         {
           "image": "assets/images/mask1.jpg",
           "name": "토리든 다이브인 마스크팩",
-          "comment": "자극적인 성분이 없요",
-          "star": "4.9",
-          "review": "10",
+          "comment": "자극적인 성분이 없어요",
+          "star": "4.32",
+          "review": "100",
           "type": "mask"
         },
         {
           "image": "assets/images/mask2.jpg",
           "name": "다자연 어성초 마스크팩",
-          "comment": "여드름 줄들어요",
-          "star": "4.83",
-          "review": "10",
+          "comment": "여드름 줄어들어요",
+          "star": "4.15",
+          "review": "100",
           "type": "mask"
         },
         {
           "image": "assets/images/mask3.jpg",
           "name": "백아울 모이스처 밸런싱 마스크",
           "comment": "밀착되고 에센스가 많아요",
-          "star": "4.54",
-          "review": "10",
+          "star": "3.64",
+          "review": "100",
           "type": "mask"
         },
         {
@@ -354,15 +363,15 @@ class _MainPageState extends State<MainPage> {
           "name": "비플레인 시카풀 카밍 마스크",
           "comment": "진정되어요",
           "star": "4.03",
-          "review": "10",
+          "review": "100",
           "type": "mask"
         },
         {
           "image": "assets/images/mask5.jpg",
           "name": "듀이트리 AC 컨트롤 EX 딥마스크",
           "comment": "쿨링기능이 있어요",
-          "star": "4.00",
-          "review": "10",
+          "star": "4.23",
+          "review": "100",
           "type": "mask"
         }
       ],
@@ -371,16 +380,16 @@ class _MainPageState extends State<MainPage> {
           "image": "assets/images/shaving1.jpg",
           "name": "플리프 시카알로에 쉐이빙크림",
           "comment": "쿨링돼요",
-          "star": "4.3",
-          "review": "10",
+          "star": "4.03",
+          "review": "100",
           "type": "shaving"
         },
         {
           "image": "assets/images/shaving2.jpg",
           "name": "러쉬 더티 쉐이빙 크림",
           "comment": "알갱이가 있어서 각질도 제거돼요",
-          "star": "4.23",
-          "review": "10",
+          "star": "4.09",
+          "review": "100",
           "type": "shaving"
         },
         {
@@ -388,23 +397,23 @@ class _MainPageState extends State<MainPage> {
           "name": "불독 오리지널 쉐이브 크림",
           "comment": "거품이 잘 안나요",
           "star": "4.13",
-          "review": "10",
+          "review": "100",
           "type": "shaving"
         },
         {
           "image": "assets/images/shaving4.jpg",
           "name": "더바디샵 포맨 쉐이브 크림",
           "comment": "건조하지만 자극 없어요",
-          "star": "4.03",
-          "review": "10",
+          "star": "4.23",
+          "review": "100",
           "type": "shaving"
         },
         {
           "image": "assets/images/shaving5.jpg",
           "name": "록시땅 리치 쉐이브 크림",
           "comment": "향이 좋아요",
-          "star": "4.00",
-          "review": "10",
+          "star": "4.15",
+          "review": "100",
           "type": "shaving"
         }
       ]
@@ -413,6 +422,15 @@ class _MainPageState extends State<MainPage> {
       {"id": "hong@naver.com", "type": "건성", "nickname": "노현"}
     ];
     // 루틴추천에 필요한 데이터 형식
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    type = context.watch<UserInfos>().type.toString();
+
+    getData(type);
   }
 
   Widget build(BuildContext context) {
@@ -483,7 +501,7 @@ class _MainPageState extends State<MainPage> {
                                                 TextButton(
                                                   onPressed: () => {
                                                     Navigator.pop(
-                                                        context, 'Cancel'),
+                                                        context, 'Cancel')
                                                   },
                                                   child: const Text('나중에'),
                                                 ),
@@ -637,7 +655,7 @@ class _MainPageState extends State<MainPage> {
                     Expanded(
                         child: ListView.builder(
                             key: const PageStorageKey("LIST_VIEW"),
-                            itemCount: category.length,
+                            itemCount: category.length - 1,
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             itemBuilder: (context, index) {
                               return Container(

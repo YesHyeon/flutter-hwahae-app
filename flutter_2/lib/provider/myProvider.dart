@@ -18,7 +18,9 @@ class UserInfos with ChangeNotifier {
       _id = userInfos['username'];
     }
 
-    if (userInfos['nickname'] != null || userInfos['nickname'] != ' ') {
+    if (userInfos['nickname'] != null &&
+        userInfos['nickname'] != ' ' &&
+        userInfos['nickname'] != '') {
       _nickname = userInfos['nickname'];
     }
 

@@ -143,9 +143,6 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                             ),
                           ],
                         ),
-
-// 피부타입 표시 부분
-
                         SizedBox(height: 24.0),
                         ElevatedButton(
                           child: Text('수정하기'),
