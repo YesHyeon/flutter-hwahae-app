@@ -12,4 +12,20 @@ class UserInfos with ChangeNotifier {
     _type = userInfos['type'];
     notifyListeners();
   }
+
+  void editUserInfo(userInfos) {
+    if (userInfos['username'] != null) {
+      _id = userInfos['username'];
+    }
+
+    if (userInfos['nickname'] != null || userInfos['nickname'] != ' ') {
+      _nickname = userInfos['nickname'];
+    }
+
+    if (userInfos['type'] != null) {
+      _type = userInfos['type'];
+    }
+
+    notifyListeners();
+  }
 }
