@@ -1,15 +1,8 @@
 # MANLIVEYOUNG
+
 2023-1 서비스데이터사이언스
 
 플러터를 이용해 제작한 남자버전 화해앱입니다.
-
-## 기술스택
-Frontend
-- Flutter
-
-Backend
-- Flask
-
 
 [앱디자인]
 
