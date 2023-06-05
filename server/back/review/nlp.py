@@ -58,26 +58,18 @@ class ReviewAnalyzer:
 
   def learning(self, file_path):
     X_train, X_test, y_train, y_test = self.data_preprocessing(file_path)
-
     # 주어진 데이터를 단어 사전으로 만들고 각 단어의 빈도수를 계산한 후 벡터화 하는 객체 생성
     tfidf = TfidfVectorizer(lowercase=False, tokenizer=self.tokenizer)
-
-    # 문장별 나오는 단어수 세서 수치화, 벡터화해서 학습을 시킨다.
+    # 문장별 나오는 단어수 세서 수치화, 벡터화해서 학습
     logistic = LogisticRegression(C=10.0, penalty='l2', random_state=0)
-
     self.pipe = Pipeline([('vect', tfidf), ('clf', logistic)])
-
-    # 학습한다.
     self.pipe.fit(X_train, y_train)
-
     # 학습 정확도 측정
     y_pred = self.pipe.predict(X_test)
     print(accuracy_score(y_test, y_pred))
-
-    # 학습된 모델을 저장한다.
+    # 학습된 모델을 저장
     with open('pipe.dat', 'wb') as fp :
         pickle.dump(self.pipe, fp)
-        
     print('저장완료')
 
   def load_model(self) :

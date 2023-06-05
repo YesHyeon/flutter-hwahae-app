@@ -16,6 +16,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 CSV_PATH = os.path.join(BASE_DIR, 'files/review.csv')
+NEW_CSV_PATH = os.path.join(BASE_DIR, 'files/new_review.csv')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
