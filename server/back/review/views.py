@@ -14,7 +14,6 @@ import os
 
 filepath = settings.CSV_PATH
 new_csv_filepath = settings.NEW_CSV_PATH  # 새로운 CSV 파일의 경로와 이름을 지정
-
 # Create your views here.
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
@@ -68,7 +67,7 @@ def upload_text(request):
 
         print("score", score)
 
-        add = [text, score, '복합성']
+        add = [text, score, user_type]
         data.loc[len(data)] = add
         data.to_csv(new_csv_filepath, index=False)  # 데이터프레임을 CSV 파일로 저장
 
