@@ -593,10 +593,44 @@ class _MainPageState extends State<MainPage> {
                       ),
                 bottomNavigationBar: BottomNavigationBar(
                     onTap: (int index) {
+                      if (index == 1) {
+                        Future.delayed(const Duration(milliseconds: 5000), () {
+                          showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text('서비스의 전반적인 만족도를 평가해주세요'),
+                              content: const TextField(
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  labelText: '긍정/부정을 판단합니다.', // 힌트
+                                ),
+                              ),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () =>
+                                      {Navigator.pop(context, 'Cancel')},
+                                  child: const Text('별로에요'),
+                                ),
+                                TextButton(
+                                  onPressed: () => {
+                                    Navigator.pop(context, 'OK'),
+                                    print('click'),
+                                  },
+                                  child: const Text('만족해요'),
+                                ),
+                              ],
+                            ),
+                          );
+
+                          print('Hello, world');
+                        });
+                      }
+                      ;
+
+                      print('dd');
                       setState(() {
                         _currentPageIndex = index;
                       });
-                      print(index);
                     },
                     currentIndex: _currentPageIndex,
                     selectedItemColor: Colors.green,
