@@ -80,9 +80,6 @@ class _MainPageState extends State<MainPage> {
           for (var i = 0; i < v.length; i++)
             {db.collection('건성cosmetics').doc(v[i]['name']).set(v[i])}
         });
-
-    // cosmetics.doc("2").set(data1);
-    print('setData');
   }
 
   getData(type) async {
@@ -101,15 +98,12 @@ class _MainPageState extends State<MainPage> {
           .get()
           .then(
         (querySnapshot) {
-          print("Successfully completed");
           for (var docSnapshot in querySnapshot.docs) {
             item.add(docSnapshot.data());
-            // print('${docSnapshot.id} => ${docSnapshot.data()}');
           }
 
           item.sort((a, b) => double.parse(b['star'].toString())
               .compareTo(double.parse(a['star'].toString())));
-          print(item);
 
           setState(() {
             _cosmeticData.addAll({'${engcategory[i]}': item});
@@ -118,9 +112,6 @@ class _MainPageState extends State<MainPage> {
         onError: (e) => print("Error completing: $e"),
       );
     }
-
-    print('_cosmeticDataTest');
-    print(_cosmeticDataTest);
     setState(() {
       _setLoading = false;
     });
@@ -153,8 +144,6 @@ class _MainPageState extends State<MainPage> {
   void sendDataToServer(String text) async {
     var url = Uri.parse('http://127.0.0.1:8000/upload/');
     var response = await http.post(url, body: {'text': text});
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
     setState(() {
       serverResponse = response.body;
     });
@@ -164,7 +153,6 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     _currentPageIndex = 0;
-    // print(_cosmeticData);
     // 제품추천에 필요한 데이터 형식
     datas = {
       "skin": [
@@ -511,7 +499,6 @@ class _MainPageState extends State<MainPage> {
                                                   onPressed: () => {
                                                     Navigator.pop(
                                                         context, 'OK'),
-                                                    print('click'),
                                                     setStar(
                                                         _cosmeticData[choice]
                                                             [index]["name"],
@@ -614,20 +601,15 @@ class _MainPageState extends State<MainPage> {
                                 TextButton(
                                   onPressed: () => {
                                     Navigator.pop(context, 'OK'),
-                                    print('click'),
                                   },
                                   child: const Text('만족해요'),
                                 ),
                               ],
                             ),
                           );
-
-                          print('Hello, world');
                         });
                       }
                       ;
-
-                      print('dd');
                       setState(() {
                         _currentPageIndex = index;
                       });
@@ -768,7 +750,6 @@ class _MainPageState extends State<MainPage> {
                       setState(() {
                         _currentPageIndex = index;
                       });
-                      print(index);
                     },
                     currentIndex: _currentPageIndex,
                     selectedItemColor: Colors.green,
@@ -877,7 +858,6 @@ class _MainPageState extends State<MainPage> {
                       setState(() {
                         _currentPageIndex = index;
                       });
-                      print(index);
                     },
                     currentIndex: _currentPageIndex,
                     selectedItemColor: Colors.green,
